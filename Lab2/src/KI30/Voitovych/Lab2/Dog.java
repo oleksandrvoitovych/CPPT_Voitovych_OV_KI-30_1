@@ -1,92 +1,40 @@
 package KI30.Voitovych.Lab2;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
- * Клас <code>Dog</code> описує пса та його поведінку.
+ * Абстрактний суперклас Dog
  */
-public class Dog {
+public abstract class Dog {
+    protected String name;
+    protected PrintWriter log;
 
-    private String name;
-    private Paw paw;
-    private Tail tail;
-    private Fur fur;
-    private PrintWriter log;
-
-    /** Конструктор без параметрів */
-    public Dog() throws FileNotFoundException {
-        this("Безіменний", new Paw(), new Tail(), new Fur());
-    }
-
-    /** Конструктор з параметрами */
-    public Dog(String name, Paw paw, Tail tail, Fur fur) throws FileNotFoundException {
+    public Dog(String name) throws FileNotFoundException {
         this.name = name;
-        this.paw = paw;
-        this.tail = tail;
-        this.fur = fur;
-        this.log = new PrintWriter(new File("DogLog.txt"));
-        log.println("Створено пса: " + name);
+        this.log = new PrintWriter(new File(name + "_DogLog.txt"));
+        log.println("Created Dog: " + name);
+        log.flush();
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    /** Метод змушує пса гавкати */
     public void bark() {
-        System.out.println(name + " гавкає: Гав-гав!");
-        log.println(name + " гавкнув.");
+        System.out.println(name + ": Гав-гав!");
+        log.println(name + " barked.");
         log.flush();
     }
 
-    /** Метод змушує пса бігти */
-    public void run() {
-        System.out.println(name + " біжить!");
-        paw.move();
-        tail.wag();
-        log.println(name + " побіг.");
-        log.flush();
-    }
-
-    /** Метод змушує пса спати */
     public void sleep() {
-        System.out.println(name + " спить...");
-        log.println(name + " заснув.");
+        System.out.println(name + " sleeps.");
+        log.println(name + " sleeps.");
         log.flush();
     }
 
-    /** Метод змінює стан шерсті */
-    public void wash() {
-        fur.clean();
-        log.println(name + " помився.");
-        log.flush();
-    }
+    // Абстрактний метод — підкласи мають реалізувати
+    public abstract void performExperiment(String protocol);
 
-    /** Метод змінює стан хвоста */
-    public void wagTail() {
-        tail.wag();
-        log.println(name + " махає хвостом.");
-        log.flush();
-    }
-
-    /** Метод змінює стан лап */
-    public void shakePaw() {
-        paw.move();
-        log.println(name + " подав лапу.");
-        log.flush();
-    }
-
-    /** Метод показує стан пса */
-    public void showInfo() {
-        System.out.println("Ім’я: " + name);
-        System.out.println("Хвіст: " + tail.getState());
-        System.out.println("Шерсть: " + fur.getState());
-        log.println("Показано інформацію про пса.");
-        log.flush();
-    }
-
-    /** Метод для закриття файлу логу */
     public void dispose() {
-        log.println("Завершено роботу з псом.");
+        log.println("Disposing Dog: " + name);
         log.close();
     }
 }
