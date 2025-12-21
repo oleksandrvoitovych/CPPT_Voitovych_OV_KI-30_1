@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"KI30.Voitovych.Lab5","l":"EquationsApp"},{"p":"KI30.Voitovych.Lab5","l":"ExpressionCalculator"}];updateSearchResults();
