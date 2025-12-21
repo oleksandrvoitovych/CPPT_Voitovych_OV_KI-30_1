@@ -1,0 +1,10 @@
+Created Dog: Rex
+TestDog created: Rex
+Rex barked.
+prepare: Temp=22;Time=5min
+perform: Protocol-1
+result: protocol=Protocol-1; result=OK; subject=Rex
+getLastExperimentReport
+Rex sleeps.
+TestDog dispose: Rex
+Disposing Dog: Rex
